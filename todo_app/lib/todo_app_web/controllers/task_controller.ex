@@ -59,7 +59,7 @@ defmodule TodoAppWeb.TaskController do
   end
 
   def delete(conn, %{"id" => id}) do
-    task = Tasks.get_task!(id)
+    task = Tasks.get_task_by_id(id)
     {:ok, _task} = Tasks.delete_task(task)
 
     conn
