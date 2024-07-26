@@ -8,8 +8,11 @@ defmodule TodoAppWeb.TaskController do
   def list(conn, params) do
     user = TodoApp.Accounts.get_current_user(conn)
     tasks = Tasks.list_tasks_by_user(user.id)
+    search =
+      %Task{user_id: user.id}
+      |>Tasks.change_task()
 
-    render(conn, :tasks, tasks: tasks)
+    render(conn, :tasks, tasks: tasks,search: search)
   end
 
   def detail(conn, %{"id" => task_params}) do
