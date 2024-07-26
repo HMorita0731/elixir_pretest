@@ -1,0 +1,33 @@
+<.header>
+  Listing Tasks
+  <:actions>
+    <.link href={~p"/tasks/new"}>
+      <.button>New Task</.button>
+    </.link>
+  </:actions>
+  <!-- <.simple_form for={@task[:title]}>
+  <.input type="text" label="Search"/>
+  </.simple_form>
+  <:actions>
+  </:actions> -->
+</.header>
+
+<.table id="tasks" rows={@tasks}>
+  <:col :let={task} label="Title">
+    <.link href={~p"/tasks/#{task.id}"}>
+      <%= task.title %>
+    </.link>
+  </:col>
+  
+  <:col :let={task} label="Date"><%= task.date %></:col>
+  
+  <:col :let={task}>
+    <.link href={~p"/tasks/#{task.id}/edit"}>
+      Edit
+    </.link>
+    /
+    <.link href={~p"/tasks/delete?id=#{task.id}"}>
+      Delete
+    </.link>
+  </:col>
+</.table>
